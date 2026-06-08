@@ -1,0 +1,227 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Arzin Systems</title>
+  <meta name="description" content="Arzin Systems — IT Services and Cybersecurity for small businesses in the Bay Area." />
+  <style>
+    :root {
+      --bg: #050816;
+      --card: rgba(255, 255, 255, 0.08);
+      --text: #f7f9ff;
+      --muted: #aab3cc;
+      --line: rgba(255, 255, 255, 0.18);
+      --glow: rgba(70, 145, 255, 0.55);
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      min-height: 100vh;
+      font-family: Inter, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      background: radial-gradient(circle at 20% 20%, #183b7a 0%, transparent 32%),
+                  radial-gradient(circle at 80% 30%, #0f766e 0%, transparent 30%),
+                  linear-gradient(135deg, #050816, #080b1f 55%, #020617);
+      color: var(--text);
+      display: grid;
+      place-items: center;
+      overflow: hidden;
+    }
+
+    .grid {
+      position: fixed;
+      inset: 0;
+      background-image: linear-gradient(var(--line) 1px, transparent 1px),
+                        linear-gradient(90deg, var(--line) 1px, transparent 1px);
+      background-size: 70px 70px;
+      opacity: 0.12;
+      mask-image: radial-gradient(circle at center, black, transparent 75%);
+      animation: drift 18s linear infinite;
+    }
+
+    @keyframes drift {
+      from { transform: translateY(0); }
+      to { transform: translateY(70px); }
+    }
+
+    .orb {
+      position: fixed;
+      width: 420px;
+      height: 420px;
+      border-radius: 50%;
+      background: radial-gradient(circle, rgba(59,130,246,0.35), transparent 65%);
+      filter: blur(12px);
+      animation: float 7s ease-in-out infinite alternate;
+    }
+
+    .orb.one { top: -120px; left: -120px; }
+    .orb.two { bottom: -150px; right: -110px; animation-delay: 1s; background: radial-gradient(circle, rgba(20,184,166,0.28), transparent 65%); }
+
+    @keyframes float {
+      from { transform: translate3d(0, 0, 0) scale(1); }
+      to { transform: translate3d(30px, -25px, 0) scale(1.08); }
+    }
+
+    main {
+      position: relative;
+      z-index: 2;
+      width: min(92vw, 820px);
+      padding: 42px;
+      border: 1px solid var(--line);
+      border-radius: 28px;
+      background: var(--card);
+      backdrop-filter: blur(18px);
+      box-shadow: 0 25px 80px rgba(0,0,0,0.35);
+      text-align: center;
+      animation: rise 900ms ease-out both;
+    }
+
+    @keyframes rise {
+      from { opacity: 0; transform: translateY(26px) scale(0.98); }
+      to { opacity: 1; transform: translateY(0) scale(1); }
+    }
+
+    .logo-wrap {
+      width: 110px;
+      height: 110px;
+      margin: 0 auto 28px;
+      display: grid;
+      place-items: center;
+      border-radius: 30px;
+      background: linear-gradient(145deg, rgba(255,255,255,0.16), rgba(255,255,255,0.04));
+      border: 1px solid var(--line);
+      box-shadow: 0 0 45px var(--glow);
+      animation: pulse 2.8s ease-in-out infinite;
+    }
+
+    @keyframes pulse {
+      0%, 100% { box-shadow: 0 0 32px rgba(70,145,255,0.38); }
+      50% { box-shadow: 0 0 70px rgba(70,145,255,0.72); }
+    }
+
+    .logo {
+      width: 64px;
+      height: 64px;
+      animation: rotate 14s linear infinite;
+    }
+
+    @keyframes rotate {
+      to { transform: rotate(360deg); }
+    }
+
+    h1 {
+      font-size: clamp(2.4rem, 7vw, 5rem);
+      letter-spacing: -0.06em;
+      line-height: 0.95;
+      margin-bottom: 16px;
+    }
+
+    .highlight {
+      background: linear-gradient(90deg, #ffffff, #93c5fd, #5eead4);
+      -webkit-background-clip: text;
+      color: transparent;
+    }
+
+    p {
+      font-size: clamp(1rem, 2vw, 1.25rem);
+      color: var(--muted);
+      line-height: 1.7;
+      max-width: 620px;
+      margin: 0 auto 28px;
+    }
+
+    .status {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      padding: 12px 18px;
+      border-radius: 999px;
+      border: 1px solid var(--line);
+      background: rgba(255,255,255,0.07);
+      color: #dbeafe;
+      font-size: 0.95rem;
+    }
+
+    .dot {
+      width: 10px;
+      height: 10px;
+      border-radius: 50%;
+      background: #22c55e;
+      box-shadow: 0 0 20px #22c55e;
+      animation: blink 1.4s infinite;
+    }
+
+    @keyframes blink {
+      0%, 100% { opacity: 0.35; transform: scale(0.9); }
+      50% { opacity: 1; transform: scale(1.2); }
+    }
+
+    .loader {
+      margin: 32px auto 0;
+      width: min(420px, 80%);
+      height: 6px;
+      border-radius: 999px;
+      overflow: hidden;
+      background: rgba(255,255,255,0.12);
+    }
+
+    .loader span {
+      display: block;
+      width: 45%;
+      height: 100%;
+      border-radius: inherit;
+      background: linear-gradient(90deg, #60a5fa, #5eead4);
+      animation: loading 1.7s ease-in-out infinite;
+    }
+
+    @keyframes loading {
+      0% { transform: translateX(-110%); }
+      100% { transform: translateX(240%); }
+    }
+
+    footer {
+      position: fixed;
+      bottom: 22px;
+      left: 0;
+      right: 0;
+      text-align: center;
+      color: rgba(255,255,255,0.45);
+      font-size: 0.9rem;
+      z-index: 2;
+    }
+  </style>
+</head>
+<body>
+  <div class="grid"></div>
+  <div class="orb one"></div>
+  <div class="orb two"></div>
+
+  <main>
+    <div class="logo-wrap" aria-label="Arzin Systems logo mark">
+      <svg class="logo" viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <path d="M50 6L87 27V73L50 94L13 73V27L50 6Z" stroke="url(#g)" stroke-width="7"/>
+        <path d="M30 55L45 70L72 34" stroke="white" stroke-width="8" stroke-linecap="round" stroke-linejoin="round"/>
+        <defs>
+          <linearGradient id="g" x1="13" y1="6" x2="87" y2="94" gradientUnits="userSpaceOnUse">
+            <stop stop-color="#60A5FA"/>
+            <stop offset="1" stop-color="#5EEAD4"/>
+          </linearGradient>
+        </defs>
+      </svg>
+    </div>
+
+    <h1><span class="highlight">Arzin Systems</span></h1>
+    <p>IT services and cybersecurity support for small businesses in the Bay Area. Secure systems. Reliable technology. Practical solutions.</p>
+
+    <div class="status">
+      <span class="dot"></span>
+      Website launch in progress
+    </div>
+
+    <div class="loader"><span></span></div>
+  </main>
+
+  <footer>© 2026 Arzin Systems LLC. All rights reserved.</footer>
+</body>
+</html>
